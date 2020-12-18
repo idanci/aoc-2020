@@ -1,12 +1,14 @@
 require 'pry-byebug'
 
-input = File.read("./input.txt")
+input = File.readlines("./input.txt", chomp: true)
 
 def solve(input)
-  input.split.permutation(2).each do |pair|
-    first, second = pair.map(&:to_i)
+  0.upto(input.size) do |r|
+    0.upto(input.size) do |c|
+      first, second = [input[r], input[c]].map(&:to_i)
 
-    return first * second if first + second == 2020
+      return first * second if first + second == 2020
+    end
   end
 
   "No solution"
